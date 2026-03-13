@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2048</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/board.css" />
+  <link rel="stylesheet" href="css/tiles.css" />
+  <link rel="stylesheet" href="css/ui.css" />
+</head>
+<body>
+
+  <div class="contenedor-juego">
+
+    <!-- Encabezado: título + barra-info (espejo del original) -->
+    <div class="encabezado">
+      <h1 class="titulo">2048</h1>
+
+      <div class="barra-info">
+
+        <!-- Puntajes -->
+        <div class="contenedor-puntajes">
+          <div class="grupo-puntajes">
+            <div class="item-puntaje">
+              <div class="etiqueta-puntaje">PUNTAJE</div>
+              <div class="valor-puntaje" id="puntaje">0</div>
+            </div>
+            <div class="item-puntaje">
+              <div class="etiqueta-puntaje">MEJOR</div>
+              <div class="valor-puntaje" id="mejor">0</div>
+            </div>
+            <div class="item-puntaje">
+              <div class="etiqueta-puntaje">FICHAS</div>
+              <div class="valor-puntaje" id="fichas">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="contenedor-botones">
+          <button class="btn-juego" id="btn-deshacer" disabled>↶ DESHACER</button>
+          <button class="btn-juego" id="btn-reiniciar">🔄 REINICIAR</button>
+          <button class="btn-juego" id="btn-sonido">🔊 SONIDO</button>
+        </div>
+
+        <!-- Slider pasos -->
+        <div class="controles-extra">
+          <div class="control-deshacer">
+            <label for="rango-deshacer">Pasos a deshacer:</label>
+            <input id="rango-deshacer" type="range" min="1" max="12" value="6" />
+            <span id="valor-deshacer">6</span>
+          </div>
+        </div>
+
+      </div><!-- /.barra-info -->
+    </div><!-- /.encabezado -->
+
+    <!-- Tablero (celdas y fichas generadas por JS) -->
+    <div class="tablero-juego" id="tablero-juego">
+      <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+      <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+      <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+      <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+
+      <!-- Pantalla fin (JS la recrea en configurarUI) -->
+      <div class="fin-juego" id="fin-juego">
+        <h2 id="texto-superior">¡Fin del juego!</h2>
+        <p  id="mensaje-fin">Puntaje final: <span id="puntaje-final">0</span></p>
+        <div class="botones-fin">
+          <button class="btn-juego" id="btn-continuar" style="display:none">Deshacer</button>
+          <button class="btn-juego" id="btn-reiniciar2">JUGAR DE NUEVO</button>
+        </div>
+      </div>
+    </div><!-- /.tablero-juego -->
+
+    <!-- Top 10 scores locales -->
+    <div id="scores-wrap">
+      <div id="scores-header">
+        <h3>🏆 Top 10 partidas</h3>
+        <span id="scores-chevron">▼</span>
+      </div>
+      <div id="scores-lista">
+        <ol id="scores-ol"></ol>
+      </div>
+    </div>
+
+  </div><!-- /.contenedor-juego -->
+
+  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
