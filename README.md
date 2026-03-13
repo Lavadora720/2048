@@ -114,8 +114,3 @@ Eso significa que:
 
 Consulta el texto completo en [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html).
 
----
-
-## Créditos
-
-El juego original 2048 fue creado por [Gabriele Cirulli](https://github.com/gabrielecirulli/2048).
