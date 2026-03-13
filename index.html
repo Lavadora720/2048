@@ -9,19 +9,19 @@
   <link rel="stylesheet" href="css/board.css" />
   <link rel="stylesheet" href="css/tiles.css" />
   <link rel="stylesheet" href="css/ui.css" />
+  <link rel="stylesheet" href="css/sandbox.css" />
 </head>
 <body>
 
   <div class="contenedor-juego">
 
-    <!-- Encabezado: título + barra-info (espejo del original) -->
     <div class="encabezado">
       <h1 class="titulo">2048</h1>
 
       <div class="barra-info">
 
-        <!-- Puntajes -->
-        <div class="contenedor-puntajes">
+        <!-- Puntajes — ocultos en sandbox -->
+        <div class="contenedor-puntajes" id="panel-puntajes">
           <div class="grupo-puntajes">
             <div class="item-puntaje">
               <div class="etiqueta-puntaje">PUNTAJE</div>
@@ -43,6 +43,7 @@
           <button class="btn-juego" id="btn-deshacer" disabled>↶ DESHACER</button>
           <button class="btn-juego" id="btn-reiniciar">🔄 REINICIAR</button>
           <button class="btn-juego" id="btn-sonido">🔊 SONIDO</button>
+          <button class="btn-juego" id="btn-sandbox">⚗ SANDBOX</button>
         </div>
 
         <!-- Slider pasos -->
@@ -57,14 +58,13 @@
       </div><!-- /.barra-info -->
     </div><!-- /.encabezado -->
 
-    <!-- Tablero (celdas y fichas generadas por JS) -->
+    <!-- Tablero -->
     <div class="tablero-juego" id="tablero-juego">
       <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
       <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
       <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
       <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
 
-      <!-- Pantalla fin (JS la recrea en configurarUI) -->
       <div class="fin-juego" id="fin-juego">
         <h2 id="texto-superior">¡Fin del juego!</h2>
         <p  id="mensaje-fin">Puntaje final: <span id="puntaje-final">0</span></p>
@@ -73,16 +73,31 @@
           <button class="btn-juego" id="btn-reiniciar2">JUGAR DE NUEVO</button>
         </div>
       </div>
-    </div><!-- /.tablero-juego -->
+    </div>
 
-    <!-- Top 10 scores locales -->
+    <!-- Logo — columna derecha arriba (donde era Meli) -->
+    <div id="logo-wrap">
+      <img src="favicon.svg" alt="logo" id="logo-tablero" />
+    </div>
+
+    <!-- Top 10 scores — siempre visible, oculto en sandbox -->
     <div id="scores-wrap">
-      <div id="scores-header">
+      <div id="scores-titulo">
         <h3>🏆 Top 10 partidas</h3>
-        <span id="scores-chevron">▼</span>
       </div>
       <div id="scores-lista">
         <ol id="scores-ol"></ol>
+      </div>
+    </div>
+
+    <!-- Panel sandbox — oculto por defecto, en PC va a col 3 -->
+    <div class="sandbox-panel" id="sandbox-panel">
+      <div class="sandbox-label">⚗ AGREGAR FICHA</div>
+      <div class="sandbox-botones">
+        <button class="btn-juego btn-ficha" data-val="512">512</button>
+        <button class="btn-juego btn-ficha" data-val="1024">1024</button>
+        <button class="btn-juego btn-ficha" data-val="2048">2048</button>
+        <button class="btn-juego btn-ficha" data-val="4096">4096</button>
       </div>
     </div>
 
@@ -90,5 +105,6 @@
 
   <script src="js/game.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/sandbox.js"></script>
 </body>
 </html>

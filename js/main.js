@@ -1,3 +1,7 @@
+/**
+ * main.js — Inicialización y scores locales
+ * Scores: top 10, solo puntaje numérico, sin nombre, localStorage.
+ */
 
 const CLAVE_SCORES = '2048_light_scores';
 
@@ -31,7 +35,8 @@ function renderScores() {
     return;
   }
 
-  lista.forEach((pts, i) => {
+  // Siempre fijo en 10, sin toggle
+  lista.slice(0, 10).forEach((pts, i) => {
     const li  = document.createElement('li');
     const pos = document.createElement('span');
     pos.className   = 'pos';
@@ -45,20 +50,10 @@ function renderScores() {
   });
 }
 
-// ── Panel scores: toggle ──────────────────────────────────────
-function iniciarPanelScores() {
-  const header = document.getElementById('scores-header');
-  const lista  = document.getElementById('scores-lista');
-  if (!header || !lista) return;
-
-  header.addEventListener('click', () => {
-    const abierto = lista.classList.toggle('visible');
-    header.classList.toggle('abierto', abierto);
-  });
-}
-
 // ── Escuchar fin de partida desde game.js ─────────────────────
+// En modo sandbox no se registra el score
 document.addEventListener('juego:fin', e => {
+  if (window._sandboxActivo) return;
   const { puntaje } = e.detail;
   guardarScore(puntaje);
   renderScores();
@@ -73,7 +68,6 @@ document.addEventListener('juego:nuevo', () => renderScores());
 document.addEventListener('DOMContentLoaded', () => {
   window.juego = new Juego2048();
 
-  iniciarPanelScores();
   renderScores();
 
   // Sincronizar slider con valor cargado

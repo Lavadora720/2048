@@ -1,4 +1,11 @@
-
+/**
+ * game.js — Motor 2048 Light
+ * Lógica reutilizada de juego.js (2048 EAN).
+ * Eliminado: AWS, filtro de palabras, Meli, slider toggle,
+ *            botón sonido DOM, miniscore AWS.
+ * Mantenido: mover, verificarEstado, actualizarVista, crearFicha,
+ *            deshacer, guardar/cargar, audio, alertas tablero.
+ */
 
 const TAM           = 4;
 const CLAVE_ESTADO  = '2048_light_estado';
@@ -68,8 +75,9 @@ class Juego2048 {
       };
       if (mapa[e.key]) { e.preventDefault(); this.mover(mapa[e.key]); return; }
 
-      // Ctrl+Z / deshacer
+      // Ctrl+Z / Delete / Backspace → deshacer
       if ((e.ctrlKey || e.metaKey) && e.key === 'z') { e.preventDefault(); this.deshacer(); return; }
+      if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); this.deshacer(); return; }
 
       // M → toggle sonido
       if (e.key === 'm' || e.key === 'M') { this.toggleSonido(); e.preventDefault(); return; }
@@ -225,7 +233,7 @@ class Juego2048 {
       for (let i = 0; i < compacta.length - 1; i++) {
         if (compacta[i] === compacta[i + 1]) {
           compacta[i] *= 2;
-          this.puntaje += compacta[i];
+          if (!window._sandboxActivo) this.puntaje += compacta[i];
           mergedValues.push(compacta[i]);
           compacta.splice(i + 1, 1);
         }
@@ -247,7 +255,7 @@ class Juego2048 {
     if (!movido) { this.historial.pop(); return; }
 
     this.agregarFicha();
-    if (this.puntaje > this.mejor) {
+    if (!window._sandboxActivo && this.puntaje > this.mejor) {
       this.mejor = this.puntaje;
       localStorage.setItem(CLAVE_MEJOR, String(this.mejor));
     }

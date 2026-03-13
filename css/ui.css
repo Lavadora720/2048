@@ -1,3 +1,7 @@
+/* ============================================================
+   ui.css — layout, encabezado, controles, scores, responsive
+   Bordes: TODOS dashed. Acento: amarillo.
+   ============================================================ */
 
 /* ── Contenedor principal ───────────────────────────────────── */
 .contenedor-juego {
@@ -169,7 +173,7 @@
   color: var(--acento);
 }
 
-/* ── Panel de scores ────────────────────────────────────────── */
+/* ── Panel de scores (siempre visible, fijo en 10) ──────────── */
 #scores-wrap {
   background: var(--card-alt);
   border: 2px dashed var(--borde);
@@ -178,17 +182,12 @@
   margin-top: 20px;
 }
 
-#scores-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+#scores-titulo {
   padding: 10px 14px;
-  cursor: pointer;
-  user-select: none;
   border-bottom: 1px dashed var(--borde-sutil);
 }
 
-#scores-header h3 {
+#scores-titulo h3 {
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--acento);
@@ -196,27 +195,13 @@
   text-transform: uppercase;
 }
 
-#scores-chevron {
-  font-size: 0.6rem;
-  color: var(--texto-muted);
-  transition: transform 0.2s ease;
-}
-#scores-header.abierto #scores-chevron { transform: rotate(180deg); }
-
-#scores-lista {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-#scores-lista.visible { max-height: 400px; }
-
-#scores-lista ol { list-style: none; padding: 4px 0 10px; }
+#scores-lista ol { list-style: none; padding: 4px 0 6px; }
 
 #scores-lista li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 14px;
+  padding: 5px 14px;
   font-size: 0.82rem;
   color: var(--texto);
   border-bottom: 1px dashed var(--borde-sutil);
@@ -313,11 +298,30 @@
     align-self: center;
   }
 
-  #scores-wrap {
+  /* Logo: col 3, fila 2 — donde era Meli */
+  #logo-wrap {
     grid-column: 3;
     grid-row: 2;
+    align-self: start;
+    justify-self: center;
+    margin-top: 0;
+    padding: 0 0 8px;
+  }
+
+  /* Scores: col 3, fila 3 — donde era mini-score */
+  #scores-wrap {
+    grid-column: 3;
+    grid-row: 3;
     margin-top: 0;
     align-self: start;
+  }
+
+  /* Sandbox panel: col 3, fila 3 (reemplaza scores en sandbox) */
+  .sandbox-panel {
+    grid-column: 3;
+    grid-row: 3;
+    align-self: start;
+    margin-top: 0;
   }
 }
 
@@ -327,4 +331,25 @@
   .titulo           { font-size: 2.4rem; }
   .btn-juego        { padding: 8px 12px; font-size: 0.76rem; }
   #rango-deshacer   { width: 110px; }
+}
+
+/* ── Logo (donde era Meli) ──────────────────────────────────── */
+#logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  margin-top: 4px;
+}
+
+#logo-tablero {
+  width: 80px;
+  height: 80px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#logo-tablero:hover {
+  opacity: 1;
+  transform: scale(1.05);
 }
