@@ -1,4 +1,4 @@
-# 2048 Light
+# 2048 petal
 
 Una versión limpia y de código abierto del juego 2048. Sin servidores, sin cuentas, sin dependencias externas. Todo corre en el navegador.
 
