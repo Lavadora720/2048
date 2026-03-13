@@ -2,7 +2,13 @@
 
 Una versión limpia y de código abierto del juego 2048. Sin servidores, sin cuentas, sin dependencias externas. Todo corre en el navegador.
 
----
+
+<p align="center">
+  <a href="https://lavadora720.github.io/2048-Petal/">
+    <img src="https://img.shields.io/badge/🌸%20Jugar%20ahora-2048%20Petal-f9a8d4?style=for-the-badge&logo=github&logoColor=white" alt="Jugar 2048 Petal" />
+  </a>
+</p>
+
 
 ## Cómo jugar
 
